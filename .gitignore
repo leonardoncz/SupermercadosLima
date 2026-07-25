@@ -1,0 +1,28 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+crash.*.log
+.terraform.lock.hcl
+
+# Credenciales
+*.pem
+*.key
+.env
+.oci/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Imágenes de prueba (no versionar binarios de muestra)
+samples/*
+!samples/.gitkeep
+
+# Sistema
+.DS_Store
