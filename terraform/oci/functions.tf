@@ -23,9 +23,6 @@ resource "oci_functions_function" "analiza_imagen" {
   memory_in_mbs      = 512
   timeout_in_seconds = 60
 
-  # La clave de Azure va como config de la FUNCIÓN (no de la aplicación) para
-  # acotar su alcance. Sigue siendo texto plano en el state de Terraform: para
-  # producción, reemplazar por referencia a OCI Vault (ver docs/trazabilidad.md).
   config = {
     AZURE_VISION_KEY = var.azure_vision_key
   }

@@ -1,10 +1,3 @@
-# Componente trazado a: Fase 5 - Región OCI Primaria - "Subred pública/privada" (dentro de la VCN dibujada)
-# NAT Gateway y Service Gateway son el detalle de implementación requerido para que
-# una función serverless en subred privada tenga salida a internet (Azure) y acceso
-# a servicios OCI (Object Storage) sin exponerse públicamente. No son cajas propias
-# de Fase 5, pero SÍ son la implementación estándar de la subred privada que Fase 5
-# sí dibuja explícitamente.
-
 resource "oci_core_vcn" "vcn" {
   compartment_id = var.compartment_ocid
   cidr_blocks    = ["10.0.0.0/16"]
