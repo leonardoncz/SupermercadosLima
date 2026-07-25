@@ -1,0 +1,16 @@
+# Copiar este archivo como terraform.tfvars y completar con valores reales.
+# terraform.tfvars NUNCA debe subirse a GitHub (ver .gitignore).
+
+tenancy_ocid     = "ocid1.tenancy.oc1..EXAMPLE"
+user_ocid        = "ocid1.user.oc1..EXAMPLE"
+fingerprint      = "xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
+private_key_path = "~/.oci/oci_api_key.pem"
+region           = "us-ashburn-1"
+compartment_ocid = "ocid1.compartment.oc1..EXAMPLE"
+project_prefix   = "lima-vip"
+
+# Copiar estos dos valores de: terraform output (-raw) en terraform/azure,
+# después de aplicar ese stack. NUNCA commitear los valores reales.
+azure_vision_endpoint = "https://lima-vip-vision-XXXX.cognitiveservices.azure.com/"
+azure_vision_key      = "PEGAR_AQUI_LA_CLAVE_REAL_NUNCA_COMMITEAR"
+ocir_region_key        = "iad"

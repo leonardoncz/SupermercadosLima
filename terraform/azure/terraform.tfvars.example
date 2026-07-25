@@ -1,0 +1,6 @@
+# Copiar este archivo como terraform.tfvars y completar con valores reales.
+# terraform.tfvars NUNCA debe subirse a GitHub (ver .gitignore).
+
+subscription_id = "00000000-0000-0000-0000-000000000000"
+location        = "eastus"
+project_prefix  = "lima-vip"

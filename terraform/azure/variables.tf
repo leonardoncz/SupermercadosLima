@@ -4,9 +4,9 @@ variable "subscription_id" {
 }
 
 variable "location" {
-  description = "Región de Azure (segunda nube en Fase 5)"
+  description = "Región de Azure (segunda nube en Fase 5). Fijada a eastus por cercanía geográfica a us-ashburn-1 (OCI), para minimizar latencia y costo de egress entre nubes, siguiendo el criterio de latencia del Marco Metodológico."
   type        = string
-  default     = "brazilsouth"
+  default     = "eastus"
 }
 
 variable "project_prefix" {

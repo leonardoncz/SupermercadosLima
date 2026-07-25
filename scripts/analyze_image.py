@@ -1,16 +1,5 @@
 """
-Prototipo funcional - Supermercados LIMA
-Flujo: Object Storage (OCI) -> Azure AI Vision -> Resultado JSON (OCI Object Storage)
-
-Trazabilidad: Arquitectura TO-BE Fase 5 (Object Storage OCI + Azure AI Vision)
-Workload: Reconocimiento VIP / Cámaras (Workload Inventory)
-
-IMPORTANTE:
-- Usar únicamente imágenes genéricas o ficticias (de stock o generadas), nunca
-  fotografías de personas reales identificables.
-- Las credenciales se leen de variables de entorno, nunca se hardcodean aquí.
-- Este script demuestra el patrón de integración multi-cloud, no un motor de
-  reconocimiento de identidad (eso corresponde a Azure AI Face, fuera de alcance).
+Credenciales en variables de entorno
 """
 
 import os
@@ -36,6 +25,10 @@ def upload_image_to_oci(client, namespace, bucket_name, object_name, file_path):
 
 def analyze_with_azure_vision(image_path, endpoint, key):
     url = endpoint.rstrip("/") + "/vision/v3.2/analyze"
+    # "People" no existe como visualFeature en la API v3.2 (esa capacidad
+    # vive en Image Analysis 4.0, con otro endpoint). En v3.2, la detección
+    # de personas se obtiene a través de "Objects" (incluye la etiqueta
+    # "person" con su boundingBox), sin necesitar reconocimiento facial.
     params = {"visualFeatures": "Objects,Tags,Description"}
     headers = {
         "Ocp-Apim-Subscription-Key": key,
@@ -45,6 +38,10 @@ def analyze_with_azure_vision(image_path, endpoint, key):
         data = f.read()
 
     response = requests.post(url, params=params, headers=headers, data=data, timeout=30)
+    if not response.ok:
+        # Imprime el cuerpo del error de Azure antes de fallar: ahí viene
+        # el motivo exacto (parámetro inválido, formato no soportado, etc.)
+        print(f"[Azure] Respuesta de error ({response.status_code}): {response.text}")
     response.raise_for_status()
     return response.json()
 

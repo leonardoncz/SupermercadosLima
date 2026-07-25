@@ -12,6 +12,7 @@ resource "oci_objectstorage_bucket" "input_evidencia" {
   name           = "${var.project_prefix}-evidencia-entrada"
   access_type    = "NoPublicAccess"
   versioning     = "Enabled"
+  object_events_enabled = true
 
   freeform_tags = {
     proyecto = "supermercados-lima"
